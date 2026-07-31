@@ -61,7 +61,6 @@
 html {
   scroll-behavior: smooth;
   height: 100%;
-  height: -webkit-fill-available;
 }
 
 body {
@@ -69,10 +68,11 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   height: 100%;
-  height: -webkit-fill-available;
   width: 100%;
-  position: relative;
-  overflow: hidden;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -111,15 +111,13 @@ body {
    5. Scene Base Styles
    ============================================================ */
 .scene {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -130,8 +128,9 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   background-color: var(--bg-primary);
-  padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
 }
 
 .scene.active {
@@ -258,6 +257,7 @@ body {
    ============================================================ */
 .scene[data-scene="loading"] {
   background: var(--bg-primary);
+  justify-content: center;
 }
 
 .loading-container {
@@ -340,6 +340,7 @@ body {
   background: linear-gradient(180deg, #87CEEB 0%, #FFD54F 50%, #FFF8E8 100%);
   background-size: 100% 300%;
   animation: sunrise 4s ease forwards;
+  justify-content: center;
 }
 
 [data-theme="dark"] .scene[data-scene="landing"] {
@@ -495,6 +496,7 @@ body {
    ============================================================ */
 .scene[data-scene="gift"] {
   background: radial-gradient(circle at center, rgba(255, 213, 79, 0.3) 0%, var(--bg-primary) 70%);
+  justify-content: center;
 }
 
 .gift-container {
@@ -1143,6 +1145,7 @@ body {
    ============================================================ */
 .scene[data-scene="cake"] {
   background: radial-gradient(circle at 50% 80%, rgba(255, 213, 79, 0.2) 0%, var(--bg-primary) 60%);
+  justify-content: center;
 }
 
 .cake-container {
@@ -1328,6 +1331,7 @@ body {
    ============================================================ */
 .scene[data-scene="letter"] {
   background: var(--bg-primary);
+  justify-content: center;
 }
 
 .letter-container {
@@ -1488,6 +1492,7 @@ body {
 .scene[data-scene="finale"] {
   background: linear-gradient(180deg, #0a0a23 0%, #1a1a4e 40%, #0d1b3e 100%);
   color: #f0e6d3;
+  justify-content: center;
 }
 
 .finale-container {
@@ -1770,7 +1775,6 @@ body {
   .scene {
     padding: 1rem;
     padding-top: 3rem;
-    justify-content: flex-start;
   }
 
   .controls {
@@ -1965,30 +1969,17 @@ body {
 
 /* iOS specific fixes */
 @supports (-webkit-touch-callout: none) {
-  /* Prevent iOS bounce scroll */
-  body {
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: none;
-  }
-
   /* Ensure buttons have enough touch target on iOS (44px minimum) */
   .control-btn,
   .nav-btn,
   .shuffle-btn,
   .scrapbook-continue-btn,
-  .make-wish-btn,
   .wish-btn,
   .restart-btn,
   .continue-hint,
   .lightbox-close {
     min-width: 44px;
     min-height: 44px;
-  }
-
-  /* Fix for iOS 100vh issue */
-  .scene {
-    height: -webkit-fill-available;
-    min-height: 100vh;
   }
 }
 
