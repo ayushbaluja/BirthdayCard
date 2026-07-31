@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Akanksha (Mithu) 🌻</title>
+  <meta name="description" content="A special interactive birthday experience for Akanksha (Mithu)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Canvas overlay for particle effects and fireworks -->
+  <canvas id="fx-canvas" aria-hidden="true"></canvas>
+
+  <!-- Fixed control buttons -->
+  <div class="controls" role="toolbar" aria-label="Site controls">
+    <button id="audio-toggle" class="control-btn" aria-label="Toggle background music" aria-pressed="false" title="Toggle Music">
+      <span class="icon">🔊</span>
+    </button>
+    <button id="theme-toggle" class="control-btn" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle Theme">
+      <span class="icon">🌙</span>
+    </button>
+    <button id="fullscreen-toggle" class="control-btn" aria-label="Toggle fullscreen mode" title="Toggle Fullscreen">
+      <span class="icon">⛶</span>
+    </button>
+  </div>
+
+  <!-- Scene 1: Loading -->
+  <section class="scene active" data-scene="loading" aria-label="Loading screen">
+    <div class="loading-container">
+      <div class="loading-sunflower" aria-label="Sunflower blooming animation">🌻</div>
+      <p class="loading-text">Preparing something beautiful...</p>
+      <div class="progress-container" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Loading progress">
+        <div class="progress-bar"><div class="progress-bar-fill"></div></div>
+        <span class="progress-text">0%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scene 2: Landing -->
+  <section class="scene" data-scene="landing" aria-label="Birthday greeting landing">
+    <div class="landing-content">
+      <h1 class="landing-title">Happy Birthday</h1>
+      <h2 class="landing-name">Akanksha (Mithu)</h2>
+      <p class="landing-subtitle">Some people make the world brighter just by being in it.</p>
+      <div class="giant-sunflower" role="button" tabindex="0" aria-label="Tap the sunflower to continue">
+        <svg viewBox="0 0 120 120" width="120" height="120" class="sunflower-svg">
+          <circle cx="60" cy="60" r="18" fill="#5A3E2B"/>
+          <g fill="#F7C948">
+            <ellipse cx="60" cy="32" rx="10" ry="18"/>
+            <ellipse cx="60" cy="88" rx="10" ry="18"/>
+            <ellipse cx="32" cy="60" rx="18" ry="10"/>
+            <ellipse cx="88" cy="60" rx="18" ry="10"/>
+            <ellipse cx="40" cy="40" rx="10" ry="18" transform="rotate(45 40 40)"/>
+            <ellipse cx="80" cy="80" rx="10" ry="18" transform="rotate(45 80 80)"/>
+            <ellipse cx="80" cy="40" rx="10" ry="18" transform="rotate(-45 80 40)"/>
+            <ellipse cx="40" cy="80" rx="10" ry="18" transform="rotate(-45 40 80)"/>
+          </g>
+        </svg>
+      </div>
+      <p class="tap-hint breathing">Tap the sunflower 🌻</p>
+    </div>
+  </section>
+
+  <!-- Scene 3: Gift Box -->
+  <section class="scene" data-scene="gift" aria-label="Gift box scene">
+    <div class="gift-container">
+      <div class="gift-box" role="button" tabindex="0" aria-label="Tap to open the gift">
+        <svg viewBox="0 0 200 220" class="gift-svg" width="200" height="220">
+          <!-- Lid -->
+          <g class="gift-lid-group">
+            <rect x="10" y="50" width="180" height="30" rx="5" fill="#F7C948" stroke="#e6a800" stroke-width="2"/>
+            <!-- Bow -->
+            <circle cx="100" cy="40" r="18" fill="#e74c3c"/>
+            <circle cx="82" cy="40" r="12" fill="#c0392b"/>
+            <circle cx="118" cy="40" r="12" fill="#c0392b"/>
+            <rect x="95" y="28" width="10" height="24" rx="3" fill="#e74c3c"/>
+          </g>
+          <!-- Body -->
+          <rect x="20" y="80" width="160" height="120" rx="5" fill="#FFD54F" stroke="#e6a800" stroke-width="2"/>
+          <!-- Ribbon vertical -->
+          <rect x="93" y="80" width="14" height="120" fill="#e74c3c" opacity="0.9"/>
+          <!-- Ribbon horizontal -->
+          <rect x="20" y="130" width="160" height="14" fill="#e74c3c" opacity="0.9"/>
+        </svg>
+      </div>
+      <p class="gift-hint breathing">Tap to open 🎁</p>
+    </div>
+  </section>
+
+  <!-- Scene 4: Scrapbook / Photo Gallery -->
+  <section class="scene" data-scene="scrapbook" aria-label="Photo scrapbook">
+    <div class="scrapbook-container">
+      <h2 class="scrapbook-title">Our Memories</h2>
+      <div class="scrapbook-pages">
+        <div class="scrapbook-page active" data-page="1">
+          <div class="photo-slot" data-index="1">
+            <img data-src="assets/photos/photo1.jpg" alt="Memory 1" class="photo-img" loading="lazy">
+            <div class="photo-placeholder"></div>
+            <div class="masking-tape"></div>
+          </div>
+          <div class="photo-slot" data-index="2">
+            <img data-src="assets/photos/photo2.jpg" alt="Memory 2" class="photo-img" loading="lazy">
+            <div class="photo-placeholder"></div>
+            <div class="masking-tape"></div>
+          </div>
+          <div class="photo-slot" data-index="3">
+            <img data-src="assets/photos/photo3.jpg" alt="Memory 3" class="photo-img" loading="lazy">
+            <div class="photo-placeholder"></div>
+            <div class="masking-tape"></div>
+          </div>
+          <div class="photo-slot" data-index="4">
+            <img data-src="assets/photos/photo4.jpg" alt="Memory 4" class="photo-img" loading="lazy">
+            <div class="photo-placeholder"></div>
+            <div class="masking-tape"></div>
+          </div>
+          <div class="photo-slot" data-index="5">
+            <img data-src="assets/photos/photo5.jpg" alt="Memory 5" class="photo-img" loading="lazy">
+            <div class="photo-placeholder"></div>
+            <div class="masking-tape"></div>
+          </div>
+        </div>
+        <div class="scrapbook-page" data-page="2">
+          <div class="photo-slot" data-index="6">
+            <img data-src="assets/photos/photo6.jpg" alt="Memory 6" class="photo-img" loading="lazy">
+            <div class="photo-placeholder"></div>
+            <div class="masking-tape"></div>
+          </div>
+          <div class="photo-slot" data-index="7">
+            <img data-src="assets/photos/photo7.jpg" alt="Memory 7" class="photo-img" loading="lazy">
+            <div class="photo-placeholder"></div>
+            <div class="masking-tape"></div>
+          </div>
+          <div class="photo-slot" data-index="8">
+            <img data-src="assets/photos/photo8.jpg" alt="Memory 8" class="photo-img" loading="lazy">
+            <div class="photo-placeholder"></div>
+            <div class="masking-tape"></div>
+          </div>
+          <div class="photo-slot" data-index="9">
+            <img data-src="assets/photos/photo9.jpg" alt="Memory 9" class="photo-img" loading="lazy">
+            <div class="photo-placeholder"></div>
+            <div class="masking-tape"></div>
+          </div>
+          <div class="photo-slot" data-index="10">
+            <img data-src="assets/photos/photo10.jpg" alt="Memory 10" class="photo-img" loading="lazy">
+            <div class="photo-placeholder"></div>
+            <div class="masking-tape"></div>
+          </div>
+        </div>
+      </div>
+      <nav class="scrapbook-nav" aria-label="Scrapbook page navigation">
+        <button class="nav-btn prev-btn" aria-label="Previous page" disabled>‹</button>
+        <span class="page-indicator" aria-live="polite">Page 1 of 2</span>
+        <button class="nav-btn next-btn" aria-label="Next page">›</button>
+      </nav>
+      <button class="shuffle-btn" aria-label="Shuffle photos">🔀 Shuffle</button>
+      <button class="scrapbook-continue-btn" aria-label="Continue to next scene">Continue →</button>
+    </div>
+    <!-- Lightbox overlay -->
+    <div class="lightbox-overlay" role="dialog" aria-label="Photo lightbox" aria-hidden="true">
+      <button class="lightbox-close" aria-label="Close lightbox">×</button>
+      <img class="lightbox-img" src="" alt="Enlarged photo">
+    </div>
+  </section>
+
+  <!-- Scene 5: Sunflower Garden -->
+  <section class="scene" data-scene="garden" aria-label="Sunflower garden with birthday wishes">
+    <div class="garden-container">
+      <h2 class="garden-title">Birthday Wishes Garden</h2>
+      <p class="garden-hint breathing">Tap each sunflower to reveal a wish 🌻</p>
+      <div class="garden-field">
+        <div class="garden-sunflower" role="button" tabindex="0" data-wish="May every dream bloom." aria-label="Sunflower 1 - tap to reveal wish">
+          <svg viewBox="0 0 60 100" width="60" height="100" class="flower-svg">
+            <rect x="27" y="45" width="6" height="55" rx="3" fill="#5E9B49"/>
+            <circle cx="30" cy="30" r="8" fill="#5A3E2B"/>
+            <g fill="#F7C948"><ellipse cx="30" cy="16" rx="5" ry="8"/><ellipse cx="30" cy="44" rx="5" ry="8"/><ellipse cx="16" cy="30" rx="8" ry="5"/><ellipse cx="44" cy="30" rx="8" ry="5"/><ellipse cx="20" cy="20" rx="5" ry="8" transform="rotate(45 20 20)"/><ellipse cx="40" cy="40" rx="5" ry="8" transform="rotate(45 40 40)"/><ellipse cx="40" cy="20" rx="5" ry="8" transform="rotate(-45 40 20)"/><ellipse cx="20" cy="40" rx="5" ry="8" transform="rotate(-45 20 40)"/></g>
+          </svg>
+          <div class="wish-message">May every dream bloom.</div>
+        </div>
+        <div class="garden-sunflower" role="button" tabindex="0" data-wish="Keep smiling, always." aria-label="Sunflower 2 - tap to reveal wish">
+          <svg viewBox="0 0 60 100" width="60" height="100" class="flower-svg">
+            <rect x="27" y="45" width="6" height="55" rx="3" fill="#5E9B49"/>
+            <circle cx="30" cy="30" r="8" fill="#5A3E2B"/>
+            <g fill="#FFD54F"><ellipse cx="30" cy="16" rx="5" ry="8"/><ellipse cx="30" cy="44" rx="5" ry="8"/><ellipse cx="16" cy="30" rx="8" ry="5"/><ellipse cx="44" cy="30" rx="8" ry="5"/><ellipse cx="20" cy="20" rx="5" ry="8" transform="rotate(45 20 20)"/><ellipse cx="40" cy="40" rx="5" ry="8" transform="rotate(45 40 40)"/><ellipse cx="40" cy="20" rx="5" ry="8" transform="rotate(-45 40 20)"/><ellipse cx="20" cy="40" rx="5" ry="8" transform="rotate(-45 20 40)"/></g>
+          </svg>
+          <div class="wish-message">Keep smiling, always.</div>
+        </div>
+        <div class="garden-sunflower" role="button" tabindex="0" data-wish="The world is brighter because of you." aria-label="Sunflower 3 - tap to reveal wish">
+          <svg viewBox="0 0 60 100" width="60" height="100" class="flower-svg">
+            <rect x="27" y="45" width="6" height="55" rx="3" fill="#5E9B49"/>
+            <circle cx="30" cy="30" r="8" fill="#5A3E2B"/>
+            <g fill="#F7C948"><ellipse cx="30" cy="16" rx="5" ry="8"/><ellipse cx="30" cy="44" rx="5" ry="8"/><ellipse cx="16" cy="30" rx="8" ry="5"/><ellipse cx="44" cy="30" rx="8" ry="5"/><ellipse cx="20" cy="20" rx="5" ry="8" transform="rotate(45 20 20)"/><ellipse cx="40" cy="40" rx="5" ry="8" transform="rotate(45 40 40)"/><ellipse cx="40" cy="20" rx="5" ry="8" transform="rotate(-45 40 20)"/><ellipse cx="20" cy="40" rx="5" ry="8" transform="rotate(-45 20 40)"/></g>
+          </svg>
+          <div class="wish-message">The world is brighter because of you.</div>
+        </div>
+        <div class="garden-sunflower" role="button" tabindex="0" data-wish="Never stop believing in yourself." aria-label="Sunflower 4 - tap to reveal wish">
+          <svg viewBox="0 0 60 100" width="60" height="100" class="flower-svg">
+            <rect x="27" y="45" width="6" height="55" rx="3" fill="#5E9B49"/>
+            <circle cx="30" cy="30" r="8" fill="#5A3E2B"/>
+            <g fill="#FFD54F"><ellipse cx="30" cy="16" rx="5" ry="8"/><ellipse cx="30" cy="44" rx="5" ry="8"/><ellipse cx="16" cy="30" rx="8" ry="5"/><ellipse cx="44" cy="30" rx="8" ry="5"/><ellipse cx="20" cy="20" rx="5" ry="8" transform="rotate(45 20 20)"/><ellipse cx="40" cy="40" rx="5" ry="8" transform="rotate(45 40 40)"/><ellipse cx="40" cy="20" rx="5" ry="8" transform="rotate(-45 40 20)"/><ellipse cx="20" cy="40" rx="5" ry="8" transform="rotate(-45 20 40)"/></g>
+          </svg>
+          <div class="wish-message">Never stop believing in yourself.</div>
+        </div>
+        <div class="garden-sunflower" role="button" tabindex="0" data-wish="May joy follow you everywhere." aria-label="Sunflower 5 - tap to reveal wish">
+          <svg viewBox="0 0 60 100" width="60" height="100" class="flower-svg">
+            <rect x="27" y="45" width="6" height="55" rx="3" fill="#5E9B49"/>
+            <circle cx="30" cy="30" r="8" fill="#5A3E2B"/>
+            <g fill="#F7C948"><ellipse cx="30" cy="16" rx="5" ry="8"/><ellipse cx="30" cy="44" rx="5" ry="8"/><ellipse cx="16" cy="30" rx="8" ry="5"/><ellipse cx="44" cy="30" rx="8" ry="5"/><ellipse cx="20" cy="20" rx="5" ry="8" transform="rotate(45 20 20)"/><ellipse cx="40" cy="40" rx="5" ry="8" transform="rotate(45 40 40)"/><ellipse cx="40" cy="20" rx="5" ry="8" transform="rotate(-45 40 20)"/><ellipse cx="20" cy="40" rx="5" ry="8" transform="rotate(-45 20 40)"/></g>
+          </svg>
+          <div class="wish-message">May joy follow you everywhere.</div>
+        </div>
+        <div class="garden-sunflower" role="button" tabindex="0" data-wish="You deserve all the happiness." aria-label="Sunflower 6 - tap to reveal wish">
+          <svg viewBox="0 0 60 100" width="60" height="100" class="flower-svg">
+            <rect x="27" y="45" width="6" height="55" rx="3" fill="#5E9B49"/>
+            <circle cx="30" cy="30" r="8" fill="#5A3E2B"/>
+            <g fill="#FFD54F"><ellipse cx="30" cy="16" rx="5" ry="8"/><ellipse cx="30" cy="44" rx="5" ry="8"/><ellipse cx="16" cy="30" rx="8" ry="5"/><ellipse cx="44" cy="30" rx="8" ry="5"/><ellipse cx="20" cy="20" rx="5" ry="8" transform="rotate(45 20 20)"/><ellipse cx="40" cy="40" rx="5" ry="8" transform="rotate(45 40 40)"/><ellipse cx="40" cy="20" rx="5" ry="8" transform="rotate(-45 40 20)"/><ellipse cx="20" cy="40" rx="5" ry="8" transform="rotate(-45 20 40)"/></g>
+          </svg>
+          <div class="wish-message">You deserve all the happiness.</div>
+        </div>
+        <div class="garden-sunflower" role="button" tabindex="0" data-wish="Shine bright like the sun." aria-label="Sunflower 7 - tap to reveal wish">
+          <svg viewBox="0 0 60 100" width="60" height="100" class="flower-svg">
+            <rect x="27" y="45" width="6" height="55" rx="3" fill="#5E9B49"/>
+            <circle cx="30" cy="30" r="8" fill="#5A3E2B"/>
+            <g fill="#F7C948"><ellipse cx="30" cy="16" rx="5" ry="8"/><ellipse cx="30" cy="44" rx="5" ry="8"/><ellipse cx="16" cy="30" rx="8" ry="5"/><ellipse cx="44" cy="30" rx="8" ry="5"/><ellipse cx="20" cy="20" rx="5" ry="8" transform="rotate(45 20 20)"/><ellipse cx="40" cy="40" rx="5" ry="8" transform="rotate(45 40 40)"/><ellipse cx="40" cy="20" rx="5" ry="8" transform="rotate(-45 40 20)"/><ellipse cx="20" cy="40" rx="5" ry="8" transform="rotate(-45 20 40)"/></g>
+          </svg>
+          <div class="wish-message">Shine bright like the sun.</div>
+        </div>
+        <div class="garden-sunflower" role="button" tabindex="0" data-wish="Today and always, be happy." aria-label="Sunflower 8 - tap to reveal wish">
+          <svg viewBox="0 0 60 100" width="60" height="100" class="flower-svg">
+            <rect x="27" y="45" width="6" height="55" rx="3" fill="#5E9B49"/>
+            <circle cx="30" cy="30" r="8" fill="#5A3E2B"/>
+            <g fill="#FFD54F"><ellipse cx="30" cy="16" rx="5" ry="8"/><ellipse cx="30" cy="44" rx="5" ry="8"/><ellipse cx="16" cy="30" rx="8" ry="5"/><ellipse cx="44" cy="30" rx="8" ry="5"/><ellipse cx="20" cy="20" rx="5" ry="8" transform="rotate(45 20 20)"/><ellipse cx="40" cy="40" rx="5" ry="8" transform="rotate(45 40 40)"/><ellipse cx="40" cy="20" rx="5" ry="8" transform="rotate(-45 40 20)"/><ellipse cx="20" cy="40" rx="5" ry="8" transform="rotate(-45 20 40)"/></g>
+          </svg>
+          <div class="wish-message">Today and always, be happy.</div>
+        </div>
+      </div>
+      <div class="butterfly-container" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- Scene 6: Timeline -->
+  <section class="scene" data-scene="timeline" aria-label="Memory timeline">
+    <div class="timeline-container">
+      <h2 class="timeline-title">Our Journey</h2>
+      <div class="timeline-track">
+        <div class="timeline-line" aria-hidden="true"></div>
+        <div class="timeline-entry" data-index="1">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <img data-src="assets/photos/photo1.jpg" alt="Timeline moment 1" class="timeline-photo" loading="lazy">
+            <p class="timeline-caption">A beautiful beginning...</p>
+          </div>
+        </div>
+        <div class="timeline-entry" data-index="2">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <img data-src="assets/photos/photo2.jpg" alt="Timeline moment 2" class="timeline-photo" loading="lazy">
+            <p class="timeline-caption">Moments that matter...</p>
+          </div>
+        </div>
+        <div class="timeline-entry" data-index="3">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <img data-src="assets/photos/photo3.jpg" alt="Timeline moment 3" class="timeline-photo" loading="lazy">
+            <p class="timeline-caption">Adventures together...</p>
+          </div>
+        </div>
+        <div class="timeline-entry" data-index="4">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <img data-src="assets/photos/photo4.jpg" alt="Timeline moment 4" class="timeline-photo" loading="lazy">
+            <p class="timeline-caption">Laughter and joy...</p>
+          </div>
+        </div>
+        <div class="timeline-entry" data-index="5">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <img data-src="assets/photos/photo5.jpg" alt="Timeline moment 5" class="timeline-photo" loading="lazy">
+            <p class="timeline-caption">Growing stronger...</p>
+          </div>
+        </div>
+        <div class="timeline-entry" data-index="6">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <img data-src="assets/photos/photo6.jpg" alt="Timeline moment 6" class="timeline-photo" loading="lazy">
+            <p class="timeline-caption">Cherished memories...</p>
+          </div>
+        </div>
+        <div class="timeline-entry" data-index="7">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <img data-src="assets/photos/photo7.jpg" alt="Timeline moment 7" class="timeline-photo" loading="lazy">
+            <p class="timeline-caption">Unforgettable days...</p>
+          </div>
+        </div>
+        <div class="timeline-entry" data-index="8">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <img data-src="assets/photos/photo8.jpg" alt="Timeline moment 8" class="timeline-photo" loading="lazy">
+            <p class="timeline-caption">Sunshine and smiles...</p>
+          </div>
+        </div>
+        <div class="timeline-entry" data-index="9">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <img data-src="assets/photos/photo9.jpg" alt="Timeline moment 9" class="timeline-photo" loading="lazy">
+            <p class="timeline-caption">Forever grateful...</p>
+          </div>
+        </div>
+        <div class="timeline-entry" data-index="10">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <img data-src="assets/photos/photo10.jpg" alt="Timeline moment 10" class="timeline-photo" loading="lazy">
+            <p class="timeline-caption">And the best is yet to come...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scene 7: Birthday Cake -->
+  <section class="scene" data-scene="cake" aria-label="Birthday cake scene">
+    <div class="cake-container">
+      <h2 class="cake-title">Make a Wish!</h2>
+      <div class="cake-wrapper">
+        <svg class="cake-svg" viewBox="0 0 300 350" aria-label="3-layer birthday cake with candles">
+          <!-- Candles -->
+          <g class="candles">
+            <rect class="candle" x="100" y="40" width="8" height="40" rx="3" fill="#F7C948"/>
+            <rect class="candle" x="146" y="30" width="8" height="50" rx="3" fill="#FFD54F"/>
+            <rect class="candle" x="192" y="40" width="8" height="40" rx="3" fill="#F7C948"/>
+          </g>
+          <!-- Flames -->
+          <g class="flames">
+            <ellipse class="flame" cx="104" cy="35" rx="5" ry="10" fill="#FF6B35"/>
+            <ellipse class="flame" cx="150" cy="25" rx="5" ry="10" fill="#FF6B35"/>
+            <ellipse class="flame" cx="196" cy="35" rx="5" ry="10" fill="#FF6B35"/>
+          </g>
+          <!-- Top layer -->
+          <rect class="cake-layer cake-layer-top" x="80" y="80" width="140" height="60" rx="10" fill="#FFF0D4"/>
+          <rect class="cake-frosting" x="80" y="75" width="140" height="20" rx="10" fill="#FFFFFF"/>
+          <!-- Middle layer -->
+          <rect class="cake-layer cake-layer-mid" x="60" y="140" width="180" height="70" rx="10" fill="#FFE4B5"/>
+          <rect class="cake-frosting" x="60" y="135" width="180" height="20" rx="10" fill="#FFFFFF"/>
+          <!-- Bottom layer -->
+          <rect class="cake-layer cake-layer-bottom" x="40" y="210" width="220" height="80" rx="10" fill="#FFDAB9"/>
+          <rect class="cake-frosting" x="40" y="205" width="220" height="20" rx="10" fill="#FFFFFF"/>
+          <!-- Plate -->
+          <ellipse class="cake-plate" cx="150" cy="295" rx="130" ry="15" fill="#DDD"/>
+          <!-- Decorations -->
+          <circle cx="100" cy="170" r="4" fill="#F7C948"/>
+          <circle cx="130" cy="175" r="4" fill="#FFD54F"/>
+          <circle cx="160" cy="168" r="4" fill="#F7C948"/>
+          <circle cx="190" cy="173" r="4" fill="#FFD54F"/>
+          <circle cx="80" cy="245" r="5" fill="#F7C948"/>
+          <circle cx="120" cy="250" r="5" fill="#FFD54F"/>
+          <circle cx="160" cy="243" r="5" fill="#F7C948"/>
+          <circle cx="200" cy="248" r="5" fill="#FFD54F"/>
+          <circle cx="240" cy="245" r="5" fill="#F7C948"/>
+        </svg>
+      </div>
+      <button class="wish-btn" aria-label="Make a wish and blow out the candles">Make a Wish ✨</button>
+    </div>
+  </section>
+
+  <!-- Scene 8: Letter -->
+  <section class="scene" data-scene="letter" aria-label="Birthday letter">
+    <div class="letter-container">
+      <div class="envelope" role="button" tabindex="0" aria-label="Click to open the envelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body"></div>
+      </div>
+      <div class="letter-paper" aria-live="polite">
+        <div class="letter-content">
+          <p class="letter-greeting">Dear Mithu,</p>
+          <p class="letter-body">
+            On this special day, I want you to know just how much you mean to me. 
+            You are like a sunflower — always turning towards the light and bringing 
+            warmth to everyone around you.
+          </p>
+          <p class="letter-body">
+            Your smile lights up every room you walk into, and your kindness touches 
+            every heart you meet. The world is truly a brighter place because you are in it.
+          </p>
+          <p class="letter-body">
+            May this year bring you endless joy, beautiful surprises, and all the love 
+            your heart can hold. You deserve every bit of happiness that comes your way.
+          </p>
+          <p class="letter-body">
+            Never stop being the amazing, wonderful person you are. Keep shining, 
+            keep dreaming, and keep spreading that beautiful light of yours.
+          </p>
+          <p class="letter-closing">With all my love,</p>
+          <p class="letter-signature">Forever yours 🌻</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scene 9: Finale -->
+  <section class="scene" data-scene="finale" aria-label="Finale celebration">
+    <div class="finale-container">
+      <div class="finale-stars" aria-hidden="true">
+        <span class="star" style="top:10%;left:15%"></span>
+        <span class="star" style="top:5%;left:45%"></span>
+        <span class="star" style="top:15%;left:75%"></span>
+        <span class="star" style="top:25%;left:30%"></span>
+        <span class="star" style="top:8%;left:85%"></span>
+        <span class="star" style="top:20%;left:60%"></span>
+        <span class="star" style="top:30%;left:10%"></span>
+        <span class="star" style="top:12%;left:92%"></span>
+      </div>
+      <div class="finale-content">
+        <h2 class="finale-message">Happy Birthday, Mithu! 🌻</h2>
+        <p class="finale-submessage">May every sunrise bring new hope, every sunset leave beautiful memories, and every tomorrow give you another reason to smile.</p>
+        <div class="finale-sunflowers-row" aria-hidden="true">
+          <span class="glowing-sunflower">🌻</span>
+          <span class="glowing-sunflower">🌻</span>
+          <span class="glowing-sunflower">🌻</span>
+        </div>
+        <button class="restart-btn" aria-label="Restart the birthday experience">
+          🔄 Experience Again
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
