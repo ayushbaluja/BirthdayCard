@@ -1013,6 +1013,11 @@ class CakeScene {
   bindEvents() {
     if (this.wishBtn) {
       this.wishBtn.addEventListener('click', () => this.makeWish());
+      // iOS fallback - ensure touch triggers
+      this.wishBtn.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        this.makeWish();
+      }, { passive: false });
     }
   }
 
@@ -1076,26 +1081,46 @@ class LetterScene {
     this.envelope = document.querySelector('.envelope');
     this.letterPaper = document.querySelector('.letter-paper');
     this.letterContent = document.querySelector('.letter-content');
+    this.letterHint = document.querySelector('.letter-hint');
     this.opened = false;
     this.typewriterInterval = null;
     this.continueBtn = null;
 
     this.letterText = "Dear Mithu,\n\nToday is a celebration of someone truly wonderful.\n\nMay this birthday bring endless smiles, unforgettable adventures, good health, peace, and beautiful memories.\n\nLike a sunflower, may you always find the light, stand tall through every season, and continue brightening the lives of everyone around you.\n\nKeep smiling.\nKeep dreaming.\nKeep blooming.\n\nHappy Birthday.\n🌻";
+
+    // Bind tap-to-open
+    if (this.envelope) {
+      this.envelope.addEventListener('click', () => this.open());
+      this.envelope.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        this.open();
+      }, { passive: false });
+    }
   }
 
   activate() {
+    // Scene entered — just wait for user to tap envelope
+  }
+
+  open() {
     if (this.opened) return;
     this.opened = true;
 
-    // Auto-open envelope — CSS handles the flap animation and paper slide
+    // Open envelope — CSS handles flap + paper slide
     if (this.envelope) {
       this.envelope.classList.add('opened');
+      this.envelope.style.cursor = 'default';
     }
 
-    // After 3s (envelope opens + paper slides up): start typewriter
+    // Hide the hint
+    if (this.letterHint) {
+      this.letterHint.style.opacity = '0';
+    }
+
+    // After 2s (paper slides up): start typewriter
     setTimeout(() => {
       this.startTypewriter();
-    }, 3000);
+    }, 2000);
   }
 
   startTypewriter() {
@@ -1162,7 +1187,13 @@ class LetterScene {
       clearInterval(this.typewriterInterval);
       this.typewriterInterval = null;
     }
-    if (this.envelope) this.envelope.classList.remove('opened');
+    if (this.envelope) {
+      this.envelope.classList.remove('opened');
+      this.envelope.style.cursor = 'pointer';
+    }
+    if (this.letterHint) {
+      this.letterHint.style.opacity = '1';
+    }
     if (this.letterContent) {
       this.letterContent.innerHTML = '';
     }

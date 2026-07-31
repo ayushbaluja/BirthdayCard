@@ -325,40 +325,41 @@
     <div class="cake-container">
       <h2 class="cake-title">Make a Wish!</h2>
       <div class="cake-wrapper">
-        <svg class="cake-svg" viewBox="0 0 300 350" aria-label="3-layer birthday cake with candles">
+        <svg class="cake-svg" viewBox="0 0 300 320" aria-label="3-layer birthday cake with candles">
           <!-- Candles -->
           <g class="candles">
-            <rect class="candle" x="100" y="40" width="8" height="40" rx="3" fill="#F7C948"/>
-            <rect class="candle" x="146" y="30" width="8" height="50" rx="3" fill="#FFD54F"/>
-            <rect class="candle" x="192" y="40" width="8" height="40" rx="3" fill="#F7C948"/>
+            <rect class="candle" x="110" y="28" width="7" height="35" rx="3" fill="#FFB6C1"/>
+            <rect class="candle" x="147" y="22" width="7" height="40" rx="3" fill="#FFB6C1"/>
+            <rect class="candle" x="184" y="28" width="7" height="35" rx="3" fill="#FFB6C1"/>
           </g>
           <!-- Flames -->
           <g class="flames">
-            <ellipse class="flame" cx="104" cy="35" rx="5" ry="10" fill="#FF6B35"/>
-            <ellipse class="flame" cx="150" cy="25" rx="5" ry="10" fill="#FF6B35"/>
-            <ellipse class="flame" cx="196" cy="35" rx="5" ry="10" fill="#FF6B35"/>
+            <ellipse class="flame" cx="113" cy="22" rx="5" ry="9" fill="#FF6B35"/>
+            <ellipse class="flame" cx="150" cy="16" rx="5" ry="9" fill="#FF6B35"/>
+            <ellipse class="flame" cx="187" cy="22" rx="5" ry="9" fill="#FF6B35"/>
           </g>
-          <!-- Top layer -->
-          <rect class="cake-layer cake-layer-top" x="80" y="80" width="140" height="60" rx="10" fill="#FFF0D4"/>
-          <rect class="cake-frosting" x="80" y="75" width="140" height="20" rx="10" fill="#FFFFFF"/>
+          <!-- Top layer (smallest) -->
+          <rect x="95" y="63" width="110" height="55" rx="8" fill="#FFDAB9"/>
+          <rect x="90" y="58" width="120" height="18" rx="9" fill="#FFFFFF"/>
           <!-- Middle layer -->
-          <rect class="cake-layer cake-layer-mid" x="60" y="140" width="180" height="70" rx="10" fill="#FFE4B5"/>
-          <rect class="cake-frosting" x="60" y="135" width="180" height="20" rx="10" fill="#FFFFFF"/>
-          <!-- Bottom layer -->
-          <rect class="cake-layer cake-layer-bottom" x="40" y="210" width="220" height="80" rx="10" fill="#FFDAB9"/>
-          <rect class="cake-frosting" x="40" y="205" width="220" height="20" rx="10" fill="#FFFFFF"/>
+          <rect x="70" y="118" width="160" height="60" rx="8" fill="#FFE4B5"/>
+          <rect x="65" y="113" width="170" height="18" rx="9" fill="#FFFFFF"/>
+          <!-- Bottom layer (largest) -->
+          <rect x="45" y="178" width="210" height="70" rx="8" fill="#FFF0D4"/>
+          <rect x="40" y="173" width="220" height="18" rx="9" fill="#FFFFFF"/>
           <!-- Plate -->
-          <ellipse class="cake-plate" cx="150" cy="295" rx="130" ry="15" fill="#DDD"/>
-          <!-- Decorations -->
-          <circle cx="100" cy="170" r="4" fill="#F7C948"/>
-          <circle cx="130" cy="175" r="4" fill="#FFD54F"/>
-          <circle cx="160" cy="168" r="4" fill="#F7C948"/>
-          <circle cx="190" cy="173" r="4" fill="#FFD54F"/>
-          <circle cx="80" cy="245" r="5" fill="#F7C948"/>
-          <circle cx="120" cy="250" r="5" fill="#FFD54F"/>
-          <circle cx="160" cy="243" r="5" fill="#F7C948"/>
-          <circle cx="200" cy="248" r="5" fill="#FFD54F"/>
-          <circle cx="240" cy="245" r="5" fill="#F7C948"/>
+          <ellipse cx="150" cy="252" rx="120" ry="12" fill="#E0E0E0"/>
+          <!-- Decorations on middle layer -->
+          <circle cx="100" cy="148" r="4" fill="#F7C948"/>
+          <circle cx="130" cy="152" r="4" fill="#FFD54F"/>
+          <circle cx="160" cy="146" r="4" fill="#F7C948"/>
+          <circle cx="190" cy="150" r="4" fill="#FFD54F"/>
+          <!-- Decorations on bottom layer -->
+          <circle cx="80" cy="215" r="4" fill="#F7C948"/>
+          <circle cx="120" cy="218" r="4" fill="#FFD54F"/>
+          <circle cx="160" cy="213" r="4" fill="#F7C948"/>
+          <circle cx="200" cy="217" r="4" fill="#FFD54F"/>
+          <circle cx="230" cy="215" r="4" fill="#F7C948"/>
         </svg>
       </div>
       <button class="wish-btn" aria-label="Make a wish and blow out the candles">Make a Wish ✨</button>
@@ -368,34 +369,14 @@
   <!-- Scene 8: Letter -->
   <section class="scene" data-scene="letter" aria-label="Birthday letter">
     <div class="letter-container">
-      <div class="envelope" role="button" tabindex="0" aria-label="Click to open the envelope">
-        <div class="envelope-flap"></div>
+      <div class="envelope" role="button" tabindex="0" aria-label="Tap to open the envelope">
         <div class="envelope-body"></div>
-      </div>
-      <div class="letter-paper" aria-live="polite">
-        <div class="letter-content">
-          <p class="letter-greeting">Dear Mithu,</p>
-          <p class="letter-body">
-            On this special day, I want you to know just how much you mean to me. 
-            You are like a sunflower — always turning towards the light and bringing 
-            warmth to everyone around you.
-          </p>
-          <p class="letter-body">
-            Your smile lights up every room you walk into, and your kindness touches 
-            every heart you meet. The world is truly a brighter place because you are in it.
-          </p>
-          <p class="letter-body">
-            May this year bring you endless joy, beautiful surprises, and all the love 
-            your heart can hold. You deserve every bit of happiness that comes your way.
-          </p>
-          <p class="letter-body">
-            Never stop being the amazing, wonderful person you are. Keep shining, 
-            keep dreaming, and keep spreading that beautiful light of yours.
-          </p>
-          <p class="letter-closing">With all my love,</p>
-          <p class="letter-signature">Forever yours 🌻</p>
+        <div class="envelope-flap"></div>
+        <div class="letter-paper">
+          <div class="letter-content"></div>
         </div>
       </div>
+      <p class="letter-hint breathing">Tap to open 💌</p>
     </div>
   </section>
 
