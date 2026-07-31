@@ -619,7 +619,8 @@ class PhotoGallery {
 
     // Lightbox close
     if (this.lightboxClose) {
-      this.lightboxClose.addEventListener('click', () => this.closeLightbox());
+      this.lightboxClose.addEventListener('click', (e) => { e.stopPropagation(); this.closeLightbox(); });
+      this.lightboxClose.addEventListener('touchend', (e) => { e.preventDefault(); e.stopPropagation(); this.closeLightbox(); }, { passive: false });
     }
     if (this.lightboxOverlay) {
       this.lightboxOverlay.addEventListener('click', (e) => {
@@ -1219,10 +1220,13 @@ class FinaleScene {
 
   bindEvents() {
     if (this.restartBtn) {
-      this.restartBtn.addEventListener('click', () => {
+      const doRestart = (e) => {
+        e.preventDefault();
         this.deactivate();
         this.sceneManager.reset();
-      });
+      };
+      this.restartBtn.addEventListener('click', doRestart);
+      this.restartBtn.addEventListener('touchend', doRestart, { passive: false });
     }
   }
 

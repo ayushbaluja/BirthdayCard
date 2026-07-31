@@ -804,7 +804,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 500;
+  z-index: 600;
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--transition-fast) ease,
@@ -828,8 +828,8 @@ body {
 
 .lightbox-close {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 1rem;
+  left: 1rem;
   color: white;
   font-size: 2rem;
   cursor: pointer;
@@ -839,7 +839,7 @@ body {
   align-items: center;
   justify-content: center;
   border: none;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   transition: background var(--transition-fast) ease;
   z-index: 510;
