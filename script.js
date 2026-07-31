@@ -655,12 +655,18 @@ class PhotoGallery {
     this.lightboxImg.src = src;
     this.lightboxOverlay.classList.add('active');
     this.lightboxOverlay.setAttribute('aria-hidden', 'false');
+    // Hide controls so they don't interfere
+    const controls = document.querySelector('.controls');
+    if (controls) controls.style.display = 'none';
   }
 
   closeLightbox() {
     if (!this.lightboxOverlay) return;
     this.lightboxOverlay.classList.remove('active');
     this.lightboxOverlay.setAttribute('aria-hidden', 'true');
+    // Show controls again
+    const controls = document.querySelector('.controls');
+    if (controls) controls.style.display = '';
   }
 
   nextPage() {
@@ -769,6 +775,14 @@ class LoadingScene {
     setTimeout(() => {
       this.sceneManager.next();
     }, 800);
+  }
+
+  reset() {
+    this.loaded = false;
+    this.progress = 0;
+    this.updateUI();
+    // Restart loading after a short delay
+    setTimeout(() => this.start(), 500);
   }
 }
 
@@ -1334,6 +1348,7 @@ document.addEventListener('DOMContentLoaded', () => {
     letterScene.reset();
     finaleScene.reset();
     canvasRenderer.clear();
+    loadingScene.reset();
   });
 
   // Start audio on first user interaction
